@@ -2,14 +2,14 @@ package com.spring.sample.Service;
 
 import java.util.List;
 
-import com.spring.sample.VO.UserInfoVO;
+import com.spring.sample.DTO.UserInfoDTO;
 
 public interface UserInfoService {
 	// 모든 사용자 조회
-	public List<UserInfoVO> selectUserInfoAll(String queryId) throws Exception;
+	public List<UserInfoDTO> selectUserInfoAll(String queryId) throws Exception;
 	
 	// 특정 사용자 조회
-	public List<UserInfoVO> selectUserInfoListWithId(String queryId, Object params) throws Exception;
+	public List<UserInfoDTO> selectUserInfoListWithId(String queryId, Object params) throws Exception;
 	
 	// 쿼리로 특정 사용자 조회
 	public Object selectUserInfo(String queryId) throws Exception;

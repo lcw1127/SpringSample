@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.sample.VO.UserInfoVO;
+import com.spring.sample.DTO.UserInfoDTO;
 
 import java.util.List;
 
@@ -29,7 +29,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 	// 모든 사용자 조회
 	@Override
-	public List<UserInfoVO> selectAllUserInfo(String queryId) throws Exception
+	public List<UserInfoDTO> selectAllUserInfo(String queryId) throws Exception
 	{
 		this.printQueryId(queryId);
 		
@@ -38,7 +38,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 	// 특정 사용자 조회
 	@Override
-	public List<UserInfoVO> selectUserInfoList(String queryId, Object params) throws Exception
+	public List<UserInfoDTO> selectUserInfoList(String queryId, Object params) throws Exception
 	{
 		this.printQueryId(queryId);
 		

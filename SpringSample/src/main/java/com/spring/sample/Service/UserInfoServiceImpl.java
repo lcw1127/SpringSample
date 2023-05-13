@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.sample.DAO.UserInfoDAOImpl;
-import com.spring.sample.VO.UserInfoVO;
+import com.spring.sample.DTO.UserInfoDTO;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {
@@ -14,12 +14,12 @@ public class UserInfoServiceImpl implements UserInfoService {
 	UserInfoDAOImpl userInfoDAOImpl;
 	
 	@Override
-	public List<UserInfoVO> selectUserInfoAll(String queryId) throws Exception {
+	public List<UserInfoDTO> selectUserInfoAll(String queryId) throws Exception {
 		return userInfoDAOImpl.selectAllUserInfo(queryId);
 	}
 
 	@Override
-	public List<UserInfoVO> selectUserInfoListWithId(String queryId, Object params) throws Exception {
+	public List<UserInfoDTO> selectUserInfoListWithId(String queryId, Object params) throws Exception {
 		return userInfoDAOImpl.selectUserInfoList(queryId, params);
 	}
 

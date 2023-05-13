@@ -1,12 +1,14 @@
-package com.spring.sample.VO;
+package com.spring.sample.DTO;
 
-public class UserInfoVO {
+public class UserInfoDTO {
 	private String id;
 	private String pw;
+	private String name;
 	
-	public UserInfoVO(String id, String pw) {
+	public UserInfoDTO(String id, String pw, String name) {
 		this.id = id;
 		this.pw = pw;
+		this.name = name;
 	}
 	
 	public String getId() {
@@ -20,5 +22,11 @@ public class UserInfoVO {
 	}
 	public void setPw(String pw) {
 		this.pw = pw;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
 	}
 }

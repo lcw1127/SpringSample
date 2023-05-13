@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-5.2.xsd
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
+	
+	<!-- Security Http -->
+	<security:http auto-config="true" use-expressions="true">
+		<!-- URI 경로별 설정 -->
+			<!--
+				access 관련
+				use-expressions="true"를 설정해야 함 
+				isAnonymous() : 익명일 때만 접근 허용(로그인 상태에서는 접근을 허용하지 않음)
+				hasRole('role') : 해당 권한이 있다면 접근 허용
+				hasAnyRole('role1', 'role2') : 하나의 권한이라도 가진다면 접근 허용
+				isAuthenticated() : 이미 로그인 인증을 받은 User일 경우 접근 허용, 익명 사용자는 로그인 페이지로 이동
+				isRememberMe() : 자동 로그인 대상 User일 경우 접근 허용
+				isFullyAuthenticated() : 자동 로그인 없이 로그인 인증을 받은 User일 경우 접근 허용
+				permitAll : 모두 접근 허용
+				denyAll : 모두 접근 미허용
+			 -->
+		<security:intercept-url pattern="/favicon.cio" access="ROLE_ANONYMOUS" />
+		<security:intercept-url pattern="/" access="permitAll" />
+		<security:intercept-url pattern="/user" access="isAuthenticated()" />
+		<security:intercept-url pattern="/user/json" access="hasRole('USER')" />
+		
+		<!-- Logout 설정 -->
+		<security:logout logout-url="/logout" logout-success-url="/" invalidate-session="true" delete-cookies="true"/>
+	</security:http> 
+
+	<!-- Security Authentication-manager -->
+	<security:authentication-manager>
+		<!-- 사용자 ID/Password 직접 지정, 항목이 늘어나면 관리 어려움 -->
+		<!--
+		<security:authentication-provider>
+			<security:user-service>
+				<security:user name="admin" password="{noop}admin" authorities="ROLE_ADMIN" />
+				<security:user name="guest1" password="{noop}guest" authorities="ROLE_USER" />
+				<security:user name="guest2" authorities="ROLE_USER"
+					password="{bcrypt}$2a$10$MF7hYnWLeLT66gNccBgxaONZHbrSMjlUofkp50sSpBw2PJjUqU.zS" />
+			</security:user-service>
+		</security:authentication-provider>
+		-->
+		<!-- 사용자 서비스와 연결하여 로그인 처리 -->
+		<security:authentication-provider user-service-ref="loginService" />
+	</security:authentication-manager>
+	
+	<!-- Component Scan -->
+	<context:component-scan base-package="com.spring.sample.Service" />
+</beans>

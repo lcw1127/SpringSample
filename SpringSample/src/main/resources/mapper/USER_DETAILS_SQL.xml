@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="test_sql">
+	<select id="selectUser" parameterType="String" resultType="com.spring.sample.DTOVO.UserInfoVO">
+		<![CDATA[
+			SELECT
+				id, pw, name
+				
+			FROM
+				user_info
+				
+			WHERE
+				id = #{username};
+		]]>
+	</select>
+
+	<select id="selectAuthList" parameterType="String" resultType="String">
+		<![CDATA[
+			SELECT
+				authority
+				
+			FROM
+				user_info
+				
+			WHERE
+				id = #{username};
+		]]>
+	</select>	
+</mapper>

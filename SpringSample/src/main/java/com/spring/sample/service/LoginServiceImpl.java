@@ -1,6 +1,6 @@
-package com.spring.sample.Service;
+package com.spring.sample.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -10,8 +10,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.spring.sample.DAO.UserDetailsDAOImpl;
-import com.spring.sample.DTO.UserDetailsDTO;
+import com.spring.sample.dao.UserDetailsDAOImpl;
+import com.spring.sample.dto.UserDetailsDTO;
 
 @Service("loginService")
 public class LoginServiceImpl implements UserDetailsService {
@@ -24,10 +24,10 @@ public class LoginServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		logger.info("loadUserByUsername {}", username);
 
-		ArrayList<String> authList = new ArrayList<String>();
+		List<String> authList = null;
 
-		UserDetailsDTO userDetailsDTO = userDetailsDAOImpl.selectUser("test_user_details.selectUser", username);
-		authList = userDetailsDAOImpl.getAuthList("test_user_details.selectAuthList", username);
+		UserDetailsDTO userDetailsDTO = userDetailsDAOImpl.selectUser("user_details_sql.selectUser", username);
+		authList = userDetailsDAOImpl.selectUserAuthList("user_details_sql.selectAuthList", username);
 		
 		if (userDetailsDTO == null) { //User을 찾지 못했을 경우
 			throw new UsernameNotFoundException(username);
@@ -38,5 +38,4 @@ public class LoginServiceImpl implements UserDetailsService {
 		
 		return userDetailsDTO; //완전한 UserDetails 객체
 	}
-
 }

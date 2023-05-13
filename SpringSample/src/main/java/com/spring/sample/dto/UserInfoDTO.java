@@ -1,4 +1,4 @@
-package com.spring.sample.DTO;
+package com.spring.sample.dto;
 
 public class UserInfoDTO {
 	private String id;

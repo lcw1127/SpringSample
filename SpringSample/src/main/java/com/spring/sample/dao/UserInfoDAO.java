@@ -1,8 +1,8 @@
-package com.spring.sample.DAO;
+package com.spring.sample.dao;
 
 import java.util.List;
 
-import com.spring.sample.DTO.UserInfoDTO;
+import com.spring.sample.dto.UserInfoDTO;
 
 public interface UserInfoDAO {
 	public void printQueryId(String queryId);
@@ -14,10 +14,10 @@ public interface UserInfoDAO {
 	public List<UserInfoDTO> selectUserInfoList(String queryId, Object params) throws Exception;
 	
 	// 쿼리로 특정 사용자 조회
-	public Object selectUserInfo(String queryId) throws Exception;
+	public UserInfoDTO selectUserInfo(String queryId) throws Exception;
 	
 	// 조건으로 쿼리로 특정 사용자 조회
-	public Object selectUserInfoWithId(String queryId, Object params) throws Exception;
+	public UserInfoDTO selectUserInfoWithId(String queryId, Object params) throws Exception;
 	
 	// 사용자 정보 추가
 	public Object insertUserInfo(String queryId, Object params) throws Exception;
@@ -27,4 +27,7 @@ public interface UserInfoDAO {
 	
 	// 사용자 정보 삭제
 	public Object deleteUserInfo(String queryId, Object params) throws Exception;
+	
+	// 사용자 권한 조회
+	public List<String> selectUserAuthorityList(String queryId, String username);
 }

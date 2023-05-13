@@ -1,4 +1,4 @@
-package com.spring.sample.Controller;
+package com.spring.sample.controller;
 
 import java.util.List;
 
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.spring.sample.DTO.UserInfoDTO;
-import com.spring.sample.Service.UserInfoServiceImpl;
+import com.spring.sample.dto.UserInfoDTO;
+import com.spring.sample.service.UserInfoServiceImpl;
 
 /**
  * Handles requests for the application home page.

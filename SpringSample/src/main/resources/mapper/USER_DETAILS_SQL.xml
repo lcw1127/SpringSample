@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="test_sql">
-	<select id="selectUser" parameterType="String" resultType="com.spring.sample.DTOVO.UserInfoVO">
+<mapper namespace="user_details_sql">
+	<select id="selectUser" parameterType="String" resultType="com.spring.sample.DTO.UserDetailsDTO">
 		<![CDATA[
 			SELECT
-				id, pw, name
+				id, pw, name, enabled
 				
 			FROM
 				user_info
@@ -21,7 +21,7 @@
 				authority
 				
 			FROM
-				user_info
+				user_authority
 				
 			WHERE
 				id = #{username};

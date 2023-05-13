@@ -1,12 +1,12 @@
-package com.spring.sample.Service;
+package com.spring.sample.service;
 
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.spring.sample.DAO.UserInfoDAOImpl;
-import com.spring.sample.DTO.UserInfoDTO;
+import com.spring.sample.dao.UserInfoDAOImpl;
+import com.spring.sample.dto.UserInfoDTO;
 
 @Service
 public class UserInfoServiceImpl implements UserInfoService {

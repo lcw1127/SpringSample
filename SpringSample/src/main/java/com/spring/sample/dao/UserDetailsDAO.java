@@ -1,8 +1,8 @@
-package com.spring.sample.DAO;
+package com.spring.sample.dao;
 
 import java.util.List;
 
-import com.spring.sample.DTO.UserDetailsDTO;
+import com.spring.sample.dto.UserDetailsDTO;
 
 public interface UserDetailsDAO {
 	public void printQueryId(String queryId);

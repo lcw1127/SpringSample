@@ -1,4 +1,4 @@
-package com.spring.sample.DAO;
+package com.spring.sample.dao;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,7 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.sample.DTO.UserInfoDTO;
+import com.spring.sample.dto.UserInfoDTO;
 
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 	// 쿼리로 특정 사용자 조회
 	@Override
-	public Object selectUserInfo(String queryId) throws Exception
+	public UserInfoDTO selectUserInfo(String queryId) throws Exception
 	{
 		this.printQueryId(queryId);
 		
@@ -56,7 +56,7 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 
 	// 조건으로 쿼리로 특정 사용자 조회
 	@Override
-	public Object selectUserInfoWithId(String queryId, Object params) throws Exception
+	public UserInfoDTO selectUserInfoWithId(String queryId, Object params) throws Exception
 	{
 		this.printQueryId(queryId);
 		
@@ -88,5 +88,12 @@ public class UserInfoDAOImpl implements UserInfoDAO {
 		this.printQueryId(queryId);
 		
 		return this.sqlSession.delete(queryId, params);
+	}
+
+	@Override
+	public List<String> selectUserAuthorityList(String queryId, String id) {
+		this.printQueryId(queryId);
+		
+		return this.sqlSession.selectList(queryId, id);
 	}
 }

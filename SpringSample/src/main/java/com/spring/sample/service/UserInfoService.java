@@ -1,8 +1,8 @@
-package com.spring.sample.Service;
+package com.spring.sample.service;
 
 import java.util.List;
 
-import com.spring.sample.DTO.UserInfoDTO;
+import com.spring.sample.dto.UserInfoDTO;
 
 public interface UserInfoService {
 	// 모든 사용자 조회

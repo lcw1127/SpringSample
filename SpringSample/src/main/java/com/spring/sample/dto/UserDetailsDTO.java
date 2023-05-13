@@ -1,4 +1,4 @@
-package com.spring.sample.DTO;
+package com.spring.sample.dto;
 
 import java.util.ArrayList;
 import java.util.Collection;

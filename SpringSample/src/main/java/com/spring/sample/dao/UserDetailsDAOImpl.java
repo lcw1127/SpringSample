@@ -1,4 +1,4 @@
-package com.spring.sample.DAO;
+package com.spring.sample.dao;
 
 import java.util.List;
 
@@ -8,7 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.spring.sample.DTO.UserDetailsDTO;
+import com.spring.sample.dto.UserDetailsDTO;
 
 @Repository
 public class UserDetailsDAOImpl implements UserDetailsDAO {

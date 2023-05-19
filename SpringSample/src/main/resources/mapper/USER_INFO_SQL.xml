@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="user_info_sql">
-	<select id="selectAll" resultType="com.spring.sample.DTO.UserInfoDTO">
+	<select id="selectAll" resultType="com.spring.sample.dto.UserInfoDTO">
 		<![CDATA[
 			SELECT
 				id, pw, name

@@ -2,7 +2,9 @@ package com.spring.sample.service;
 
 import java.util.List;
 
+import com.spring.sample.dto.LoginDTO;
 import com.spring.sample.dto.UserInfoDTO;
+import com.spring.sample.security.jwt.JwtToken;
 
 public interface UserInfoService {
 	// 모든 사용자 조회
@@ -25,4 +27,7 @@ public interface UserInfoService {
 	
 	// 사용자 정보 삭제
 	public Object deleteUserInfo(String queryId, Object params) throws Exception;
+	
+	// 사용자 로그인
+	public JwtToken login(LoginDTO loginDTO) throws Exception;
 }

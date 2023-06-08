@@ -43,6 +43,7 @@
 		<security:intercept-url pattern="/user" access="permitAll"/>
 		
 		<security:intercept-url pattern="/user/login" access="isAnonymous()"/>
+		<security:intercept-url pattern="/user/join" access="hasRole('ADMIN')"/>
 		
 		<security:intercept-url pattern="/user/json" access="hasRole('USER')"/>
 		<security:intercept-url pattern="/user/db" access="isAuthenticated()"/>

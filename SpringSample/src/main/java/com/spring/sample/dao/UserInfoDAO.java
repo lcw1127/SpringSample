@@ -20,7 +20,16 @@ public interface UserInfoDAO {
 	public UserInfoDTO selectUserInfoWithId(String queryId, Object params) throws Exception;
 	
 	// 사용자 정보 추가
-	public Object insertUserInfo(String queryId, Object params) throws Exception;
+	public Object insertUserInfo(String queryId, UserInfoDTO userInfoDTO) throws Exception;
+	
+	// 사용자 권한 정보 추가
+	public Object insertUserAuthority(String queryId, UserInfoDTO userInfoDTO) throws Exception;
+	
+	// 사용자 등록 히스토리 정보 추가
+	public Object insertUserHistory(String queryId, UserInfoDTO userInfoDTO) throws Exception;
+	
+	// 사용자 등록 히스토리 정보 추가
+	public Object insertTest(UserInfoDTO userInfoDTO);
 	
 	// 사용자 정보 수정
 	public Object updateUserInfo(String queryId, Object params) throws Exception;

@@ -20,7 +20,10 @@ public interface UserInfoService {
 	public Object selectUserInfoWithId(String queryId, Object params) throws Exception;
 	
 	// 사용자 정보 추가
-	public Object insertUserInfo(String queryId, Object params) throws Exception;
+	public Object insertUserInfo(UserInfoDTO userInfoDTO) throws Exception;
+	
+	// 사용자 정보 추가
+	public Object insertUserInfo2(UserInfoDTO userInfoDTO);
 	
 	// 사용자 정보 수정
 	public Object updateUserInfo(String queryId, Object params) throws Exception;

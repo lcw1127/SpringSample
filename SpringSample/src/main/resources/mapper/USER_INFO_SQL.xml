@@ -25,6 +25,39 @@
 		]]>
 	</select>
 	
+	<insert id="insertUserInfo" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO
+				user_info
+				(`ID`, `PW`, `NAME`)
+			
+			VALUES
+				(#{id}, #{pw}, #{name})
+		]]>
+	</insert>
+	
+	<insert id="insertUserAuthority" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO
+				user_authority
+				(`ID`)
+			
+			VALUES
+				(#{id})
+		]]>
+	</insert>
+	
+	<insert id="insertUserHistory" parameterType="hashmap">
+		<![CDATA[
+			INSERT INTO
+				user_history
+				(`ID`, `NAME`)
+			
+			VALUES
+				(#{id}, #{name})
+		]]>
+	</insert>
+	
 	<insert id="upsertUserInfo" parameterType="hashmap">
 		<![CDATA[
 			INSERT INTO

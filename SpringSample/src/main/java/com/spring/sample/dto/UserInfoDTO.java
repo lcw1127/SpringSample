@@ -5,6 +5,9 @@ public class UserInfoDTO {
 	private String pw;
 	private String name;
 	
+	public UserInfoDTO() {
+	}
+	
 	public UserInfoDTO(String id, String pw, String name) {
 		this.id = id;
 		this.pw = pw;
@@ -28,5 +31,10 @@ public class UserInfoDTO {
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	@Override
+	public String toString() {
+		return "UserInfoDTO {id [" + this.id + "] pw [" + this.pw + "] name [" + this.name + "]}";
 	}
 }

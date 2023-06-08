@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="product_info_sql">
+	<select id="selectAllProductInfo" resultType="com.spring.sample.dto.ProductInfoDTO">
+		<![CDATA[
+			SELECT
+				name, description
+				
+			FROM
+				product_info;
+		]]>
+	</select>
+	
+	<select id="selectProductInfo" parameterType="String" resultType="com.spring.sample.dto.ProductInfoDTO">
+		<![CDATA[
+			SELECT
+				a.name, b.quantity, b.price, a.description
+				
+			FROM
+				product_info as a join product_stock as b on a.name = b.name
+				
+			WHERE
+				a.name = #{name}
+		]]>
+	</select>
+	
+	<insert id="insertProductInfo" parameterType="com.spring.sample.dto.ProductInfoDTO">
+		<![CDATA[
+			INSERT INTO
+				product_info
+				(`name`, `description`)
+			
+			VALUES
+				(#{name}, #{description})
+		]]>
+	</insert>
+	
+	<insert id="insertProductStock" parameterType="com.spring.sample.dto.ProductInfoDTO">
+		<![CDATA[
+			INSERT INTO
+				product_stock
+				(`name`, `quantity`, `price`, `discount`)
+			
+			VALUES
+				(#{name}, #{quantity}, #{price}, #{discount})
+		]]>
+	</insert>
+	
+	<update id="updateProductQuantity" parameterType="hashmap">
+		<![CDATA[
+			UPDATE
+				product_stock
+			
+			SET
+				quantity = quantity - #{quantity}
+			
+			WHERE
+				name = #{name};
+		]]>
+	</update>
+</mapper>

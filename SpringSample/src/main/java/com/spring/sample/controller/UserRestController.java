@@ -81,6 +81,40 @@ public class UserRestController {
 		return new ResponseEntity<>("{\"token\":\"" + jwt.getAccessToken() + "\"}", httpHeaders, HttpStatus.OK);
 	}
 	
+	@RequestMapping(value = "/join", method = RequestMethod.POST)
+	public ResponseEntity<String> join(@RequestBody UserInfoDTO userInfoDTO) {
+		int result = 0;
+		
+		logger.info("Test POST /user/join, Data {}", userInfoDTO.toString());
+		
+		try {
+			result = (int) userInfoServiceImpl.insertUserInfo(userInfoDTO);
+		} catch (Exception e) {
+			logger.error(e.getMessage());
+			
+			return new ResponseEntity<>("{\"errMsg\" : \"" + e.getMessage() + "\"}", null, HttpStatus.BAD_REQUEST);
+		}
+
+		return new ResponseEntity<>("{\"result\":\"" + Integer.toString(result) + "\"}", null, HttpStatus.OK);
+	}
+	
+	@RequestMapping(value = "/join2", method = RequestMethod.POST)
+	public ResponseEntity<String> join2(@RequestBody UserInfoDTO userInfoDTO) {
+		int result = 0;
+		
+		logger.info("Test POST /user/join, Data {}", userInfoDTO.toString());
+		
+		//try {
+			result = (int) userInfoServiceImpl.insertUserInfo2(userInfoDTO);
+//		} catch (Exception e) {
+//			logger.error(e.getMessage());
+//			
+//			return new ResponseEntity<>("{\"errMsg\" : \"" + e.getMessage() + "\"}", null, HttpStatus.BAD_REQUEST);
+//		}
+
+		return new ResponseEntity<>("{\"result\":\"" + Integer.toString(result) + "\"}", null, HttpStatus.OK);
+	}
+	
 	/*
 	 * /user/logout 으로 요청이 왔을 때 사용됨
 	 */

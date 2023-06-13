@@ -4,7 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -22,25 +21,21 @@ import com.spring.sample.service.PurchaseService;
 public class PurchaseController {
 	private static final Logger logger = LoggerFactory.getLogger(PurchaseController.class);
 	
-	//@Autowired
+	/*
+	 * PurchaseService에 대한 Transaction 관리가 되도록 여기서는 Interface를 선언해 사용하며
+	 * PurchaseService의 구현체인 PurchaseServiceImpl의 함수에서 @Transactional 을 붙여줘야 한다.
+	 */
 	private final PurchaseService purchaseService;
 	
 	public PurchaseController(PurchaseService purchaseService) {
 		this.purchaseService = purchaseService;
 	}
-//	
-//	public PurchaseController(PurchaseService purchaseService) {
-//		this.purchaseService = purchaseService;
-//	}
 	
 	/*
 	 * /purchase 로 요청이 왔을 때 사용됨
-	 * Service에 대해 Transaction 관리를 하도록 사용
-	 * Service 구현체인 ServiceImpl의 purchaseProduct 함수에도 @Transactional 을 붙여줘야 관리가 됨
 	 **/
-	@Transactional
 	@RequestMapping(value = "", produces = "application/json; charset=utf8", method = RequestMethod.POST)
-	public ResponseEntity<String> getAllProductInfo(@RequestBody PurchaseInfoDTO purchaseInfo) {
+	public ResponseEntity<String> getAllProductInfo(@RequestBody PurchaseInfoDTO purchaseInfo) throws Exception {
 		boolean result = true;
 		
 		logger.info("Test POST /purchase, PurchaseInfo {}", purchaseInfo);

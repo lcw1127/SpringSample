@@ -37,6 +37,16 @@
 	<!-- @Secured, @PreAuthorize, @PostAuthorize Annotation 사용을 위해 설정 -->
 	<security:global-method-security secured-annotations="enabled" pre-post-annotations="enabled" />
 	
+	<!--
+		root-context.xml에서는 servlet-context.xml 에서 등록된 bean에 접근할 수 없음
+		servlet-context.xml에서는 root-context.xml 에서 등록된 bean에 접근할 수 있음
+		
+		root-cotext.xml에서 Transaction 설정을 해줄 때는 Transaction에 사용되는 Package를 Scan하는 설정을 넣어줘야 함
+		-> @Service, @Repository와 같이 Transaction과 관련된 Class들 
+		-> @Controller와 같은 Class는 servlet-context.xml에 설정
+		
+		여기서 com.spring.sample.service에 대해 component-scan을 수행하면 @Transactional로 Transaction 관리가 안됨
+	-->
 	<context:component-scan base-package="com.spring.sample.controller" />
 	
 	

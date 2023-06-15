@@ -5,8 +5,8 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
-import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionStatus;
@@ -24,7 +24,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 	
 	private final UserInfoDAOImpl userInfoDAOImpl;
 
-	private final AuthenticationManager authenticationManager;
+	//private final AuthenticationManager authenticationManager;
+	private final AuthenticationManagerBuilder authenticationManagerBuilder;
 	
 	private final JwtTokenProvider jwtTokenProvider;
 	
@@ -34,10 +35,13 @@ public class UserInfoServiceImpl implements UserInfoService {
 	private final DataSourceTransactionManager transactionManager;
 		
 	public UserInfoServiceImpl(UserInfoDAOImpl userInfoDAOImpl,
-								AuthenticationManager authenticationManager, JwtTokenProvider jwtTokenProvider,
+								//AuthenticationManager authenticationManager,
+			 					AuthenticationManagerBuilder authenticationManagerBuilder,
+								JwtTokenProvider jwtTokenProvider,
 								DataSourceTransactionManager transactionManager) {
-		this.authenticationManager = authenticationManager;
+		//this.authenticationManager = authenticationManager;
 		this.userInfoDAOImpl = userInfoDAOImpl;
+		this.authenticationManagerBuilder = authenticationManagerBuilder;
 		this.jwtTokenProvider = jwtTokenProvider;
 		this.transactionManager = transactionManager;
 	}
@@ -130,7 +134,8 @@ public class UserInfoServiceImpl implements UserInfoService {
 		UsernamePasswordAuthenticationToken authenticationToken =
 				new UsernamePasswordAuthenticationToken(loginDTO.getId(), loginDTO.getPw());
 		
-		Authentication authentication = authenticationManager.authenticate(authenticationToken);
+		//Authentication authentication = authenticationManager.authenticate(authenticationToken);
+		Authentication authentication = authenticationManagerBuilder.getObject().authenticate(authenticationToken);
 
 		JwtToken jwt = jwtTokenProvider.generateToken(authentication);
 		
